@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GenerateProgramFile>false</GenerateProgramFile>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -15,15 +16,24 @@
     <PackageReference Include="NUnit.Analyzers" Version="3.3.0" />
     <PackageReference Include="coverlet.collector" Version="3.1.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="FluentAssertions" Version="6.7.0" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Models\" />
     <None Remove="Data\" />
     <None Remove="Newtonsoft.Json" />
+    <None Remove="Tests\" />
+    <None Remove="FluentAssertions" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Data\" />
+    <Folder Include="Tests\" />
+    <Folder Include="bin\Debug\net6.0\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\net6.0\FlightData.json" />
+    <None Include="bin\Debug\net6.0\HotelData.json" />
   </ItemGroup>
 </Project>

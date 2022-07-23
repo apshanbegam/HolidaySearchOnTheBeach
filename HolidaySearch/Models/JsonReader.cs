@@ -1,27 +1,35 @@
 ﻿using System;
+using System.IO;
 using Newtonsoft.Json;
+using System.Globalization;
 
-namespace HolidaySearch.Models
+namespace Search.Models
 {
     public class JsonReader
     {
-        public void LoadFlightJson()
+        List<Flight> Flights;
+        List<Hotel> Hotels;
+
+        public List<Flight> LoadFlightJson()
         {
-            using (StreamReader r = new StreamReader(@"Data\FlightData.json"))
+            
+            using (var streamReader = new StreamReader(@"FlightData.json"))
             {
-                string json = r.ReadToEnd();
-                List<Flight> Flights = JsonConvert.DeserializeObject<List<Flight>>(json);
+                string json = streamReader.ReadToEnd();
+                Flights = JsonConvert.DeserializeObject<List<Flight>>(json);
             }
+            return Flights;
         }
 
         
-        public void LoadHotelJson()
+        public List<Hotel> LoadHotelJson()
         {
-            using (StreamReader r = new StreamReader(@"Data\HotelData.json"))
+            using (var streamReader = new StreamReader(@"HotelData.json"))
             {
-                string json = r.ReadToEnd();
-                List<Hotel> Hotels = JsonConvert.DeserializeObject<List<Hotel>>(json);
+                string json = streamReader.ReadToEnd();
+                Hotels = JsonConvert.DeserializeObject<List<Hotel>>(json);
             }
+            return Hotels;
         }
 
       

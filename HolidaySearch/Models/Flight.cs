@@ -1,13 +1,13 @@
 ﻿using System;
-namespace HolidaySearch.Models
+namespace Search.Models
 {
     public class Flight
     {
-        public int id { get; set; }
-        public string airline { get; set; }
-        public string from { get; set; }
-        public string to { get; set; }
-        public float price { get; set; }
-        public DateOnly departure_date { get; set; }
+        public int Id { get; set; }
+        public string Airline { get; set; }
+        public string From { get; set; }
+        public string To { get; set; }
+        public float Price { get; set; }
+        public string Departure_Date { get; set; }
     }
 }
