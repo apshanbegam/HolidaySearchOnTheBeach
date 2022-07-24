@@ -21,15 +21,21 @@
 
   <ItemGroup>
     <None Remove="Models\" />
-    <None Remove="Data\" />
     <None Remove="Newtonsoft.Json" />
     <None Remove="Tests\" />
     <None Remove="FluentAssertions" />
+    <None Remove="Data\" />
+    <None Remove="Microsoft.AspNetCore.Mvc" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="Data\" />
     <Folder Include="Tests\" />
     <Folder Include="bin\Debug\net6.0\" />
+    <Folder Include="Data\" />
+    <Folder Include="bin\Debug\net6.0\Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\net6.0\Data\FlightData.json" />
+    <None Include="bin\Debug\net6.0\Data\HotelData.json" />
   </ItemGroup>
 </Project>

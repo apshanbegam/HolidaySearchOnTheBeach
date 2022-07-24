@@ -14,6 +14,7 @@ namespace Search.Tests
         [Test]
         public void Get_Correct_Results_Of_Flight_And_Hotel_For_Given_Input()
         {
+
             var holidaySearch = new HolidaySearch() { DepartingFrom = "MAN", TravelingTo = "AGP", DepartureDate = "2023-07-01", Duration = 7 };
 
             holidaySearch.Results().First();
@@ -33,7 +34,7 @@ namespace Search.Tests
         [Test]
         public void Get_Correct_Results_Of_Flight_And_Hotel_For_Given_All_London_Airport()
         {
-            var holidaySearch = new HolidaySearch() { DepartingFrom = "LGW", TravelingTo = "PMI", DepartureDate = "2023-06-15", Duration = 10};
+            var holidaySearch = new HolidaySearch() { DepartingFrom = "LGW", TravelingTo = "PMI", DepartureDate = "2023-06-15", Duration = 10 };
 
             holidaySearch.Results().First();
             holidaySearch.Results().First().TotalPrice.Should().Be(675);
@@ -66,7 +67,16 @@ namespace Search.Tests
 
         }
 
+        [Test]
+        public void HandlingEmptyLists()
+        {
+            var holidaySearch = new HolidaySearch() { DepartingFrom = "MAN", TravelingTo = "LGN", DepartureDate = "2024-11-10", Duration = 14 };
+            
+            Exception ex = Assert.Throws<Exception>(() => holidaySearch.Results());
+            Assert.That(ex.Message, Is.EqualTo("Flight or Hotel is not present for given input"));
+           
+
+        }
     }
+
 }
-
-

@@ -15,38 +15,48 @@ namespace Search.Models
         List<Result> ResultList = new List<Result>();
 
         JsonReader jsonReader = new JsonReader();
-        
-        public void loadData()
+
+        public HolidaySearch()
         {
             Flights = jsonReader.LoadFlightJson();
             Hotels = jsonReader.LoadHotelJson();
-            
         }
 
         public List<Result> Results()
         {
-            loadData();
-            var FlightResults = FlightsList();
-            var HotelResults = HotelsList();
-            if (FlightResults.Count ==0 || HotelResults.Count ==0 || FlightResults == null || HotelResults == null)
+            try
             {
-                Console.WriteLine("Flight or Hotel is not present for given input");
-            }
-            else
-            {
-                foreach (var f in FlightResults)
+                var FlightResults = FlightsList();
+                var HotelResults = HotelsList();
+                if (FlightResults!= null && HotelResults != null && FlightResults.Count > 0 && HotelResults.Count > 0)
                 {
-                    foreach (var h in HotelResults)
+                    foreach (var f in FlightResults)
                     {
-                        Result r = new Result();
-                        r.TotalPrice = f.Price + (h.Price_per_night * Duration);
-                        r.Flight = f;
-                        r.Hotel = h;
-                        ResultList.Add(r);
+                        foreach (var h in HotelResults)
+                        {
+                            Result r = new Result();
+                            r.TotalPrice = f.Price + (h.Price_per_night * Duration);
+                            r.Flight = f;
+                            r.Hotel = h;
+                            ResultList.Add(r);
+                            Console.WriteLine(r.TotalPrice);
+                        }
                     }
+                    
                 }
+                else
+                {
+                    throw new Exception("Flight or Hotel is not present for given input");
+                }
+
             }
-            
+            catch(Exception e)
+            {
+                //Handling Error
+                throw;
+            }
+
+
             return ResultList;
 
         }

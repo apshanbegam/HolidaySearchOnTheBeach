@@ -8,7 +8,7 @@ namespace Models
     {
         public static void Main(string[] args)
         {
-            var holidaySearch = new HolidaySearch() { DepartingFrom = "MAN", TravelingTo = "LPA", DepartureDate = "2024-11-10", Duration = 14 };
+            var holidaySearch = new HolidaySearch() { DepartingFrom = "MAN", TravelingTo = "AGP", DepartureDate = "2023-07-01", Duration = 7 };
 
             holidaySearch.Results();
 
