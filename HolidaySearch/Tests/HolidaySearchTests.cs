@@ -4,11 +4,11 @@ namespace Search.Tests
 {
     public class HolidaySearchTests
     {
-    
+        HolidaySearch holidaySearch;
         [SetUp]
         public void Setup()
         {
-            
+            holidaySearch = new HolidaySearch();
         }
 
         [Test]
@@ -65,6 +65,7 @@ namespace Search.Tests
             holidaySearch.Results().First().Hotel.Price_per_night.Should().Be(75);
 
         }
+
     }
 }
 

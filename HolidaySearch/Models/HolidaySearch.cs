@@ -28,33 +28,27 @@ namespace Search.Models
             loadData();
             var FlightResults = FlightsList();
             var HotelResults = HotelsList();
-
-            if(FlightResults== null || FlightResults.Count ==0)
+            if (FlightResults.Count ==0 || HotelResults.Count ==0 || FlightResults == null || HotelResults == null)
             {
-                throw new ArgumentNullException("Flight Results is empty");
+                Console.WriteLine("Flight or Hotel is not present for given input");
             }
-
-            if(HotelResults == null || HotelResults.Count ==0)
+            else
             {
-                throw new ArgumentNullException("Hotel Results is empty");
-            }
-
-            Console.WriteLine(FlightResults.Count());
-            Console.WriteLine(HotelResults.Count());
-            foreach (var f in FlightResults)
-            {
-                foreach(var h in HotelResults)
+                foreach (var f in FlightResults)
                 {
-                    Result r = new Result();
-                    r.TotalPrice = f.Price + (h.Price_per_night * Duration);
-                    r.Flight = f;
-                    r.Hotel = h;
-                    ResultList.Add(r);
-                    Console.WriteLine(r.TotalPrice);
+                    foreach (var h in HotelResults)
+                    {
+                        Result r = new Result();
+                        r.TotalPrice = f.Price + (h.Price_per_night * Duration);
+                        r.Flight = f;
+                        r.Hotel = h;
+                        ResultList.Add(r);
+                    }
                 }
             }
-
+            
             return ResultList;
+
         }
 
         public List<Flight> FlightsList()

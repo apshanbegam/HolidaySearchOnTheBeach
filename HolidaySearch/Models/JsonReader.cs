@@ -12,8 +12,9 @@ namespace Search.Models
 
         public List<Flight> LoadFlightJson()
         {
-            
-            using (var streamReader = new StreamReader(@"FlightData.json"))
+            string path = Path.Combine(Directory.GetCurrentDirectory(), $@"../../../Data/FlightData.json");
+           
+            using (var streamReader = new StreamReader(path))
             {
                 string json = streamReader.ReadToEnd();
                 Flights = JsonConvert.DeserializeObject<List<Flight>>(json);
@@ -24,7 +25,8 @@ namespace Search.Models
         
         public List<Hotel> LoadHotelJson()
         {
-            using (var streamReader = new StreamReader(@"HotelData.json"))
+            string path = Path.Combine(Directory.GetCurrentDirectory(), $@"../../../Data/HotelData.json");
+            using (var streamReader = new StreamReader(path))
             {
                 string json = streamReader.ReadToEnd();
                 Hotels = JsonConvert.DeserializeObject<List<Hotel>>(json);

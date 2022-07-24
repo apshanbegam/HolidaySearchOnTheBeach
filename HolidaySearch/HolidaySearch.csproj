@@ -32,8 +32,4 @@
     <Folder Include="Tests\" />
     <Folder Include="bin\Debug\net6.0\" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="bin\Debug\net6.0\FlightData.json" />
-    <None Include="bin\Debug\net6.0\HotelData.json" />
-  </ItemGroup>
 </Project>
