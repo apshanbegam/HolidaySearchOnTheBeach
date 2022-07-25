@@ -1,22 +1,26 @@
-﻿using Search.Models;
+﻿using Search.SearchModels;
+
 using FluentAssertions;
 namespace Search.Tests
 {
     public class HolidaySearchTests
     {
-        HolidaySearch holidaySearch;
+
         [SetUp]
         public void Setup()
         {
-            holidaySearch = new HolidaySearch();
+
         }
 
         [Test]
         public void Get_Correct_Results_Of_Flight_And_Hotel_For_Given_Input()
         {
 
-            var holidaySearch = new HolidaySearch() { DepartingFrom = "MAN", TravelingTo = "AGP", DepartureDate = "2023-07-01", Duration = 7 };
-
+            var holidaySearch = new HolidaySearch(departingFrom: "MAN",
+                                                  travelingTo: "AGP",
+                                                  departureDate: "2023/07/01",
+                                                  duration: 7
+                                                  );
             holidaySearch.Results().First();
             holidaySearch.Results().First().TotalPrice.Should().Be(826);
             holidaySearch.Results().First().Flight.Id.Should().Be(2);
@@ -32,9 +36,12 @@ namespace Search.Tests
 
 
         [Test]
-        public void Get_Correct_Results_Of_Flight_And_Hotel_For_Given_All_London_Airport()
+        public void Get_Correct_Results_Of_Flight_And_Hotel_For_LGW_PMI()
         {
-            var holidaySearch = new HolidaySearch() { DepartingFrom = "LGW", TravelingTo = "PMI", DepartureDate = "2023-06-15", Duration = 10 };
+            var holidaySearch = new HolidaySearch(departingFrom: "LGW",
+                                                  travelingTo: "PMI",
+                                                  departureDate: "2023-06-15",
+                                                  duration: 10);
 
             holidaySearch.Results().First();
             holidaySearch.Results().First().TotalPrice.Should().Be(675);
@@ -50,11 +57,13 @@ namespace Search.Tests
         }
 
         [Test]
-        public void Get_Correct_Results_Of_Flight_And_Hotel_For_Given_All_Departing_Airport()
+        public void Get_Correct_Results_Of_Flight_And_Hotel_For_MAN_LPA()
         {
-            var holidaySearch = new HolidaySearch() { DepartingFrom = "MAN", TravelingTo = "LPA", DepartureDate = "2022-11-10", Duration = 14 };
+            var holidaySearch = new HolidaySearch(departingFrom: "MAN",
+                                                  travelingTo: "LPA",
+                                                  departureDate: "2022-11-10",
+                                                  duration: 14);
 
-            holidaySearch.Results().First();
             holidaySearch.Results().First().TotalPrice.Should().Be(1175);
             holidaySearch.Results().First().Flight.Id.Should().Be(7);
             holidaySearch.Results().First().Flight.Airline.Should().Be("Trans American Airlines");
@@ -70,13 +79,61 @@ namespace Search.Tests
         [Test]
         public void HandlingEmptyLists()
         {
-            var holidaySearch = new HolidaySearch() { DepartingFrom = "MAN", TravelingTo = "LGN", DepartureDate = "2024-11-10", Duration = 14 };
-            
+            var holidaySearch = new HolidaySearch(departingFrom: "MAN",
+                                                  travelingTo: "LGW",
+                                                  departureDate: "2024-11-10",
+                                                  duration: 14);
             Exception ex = Assert.Throws<Exception>(() => holidaySearch.Results());
             Assert.That(ex.Message, Is.EqualTo("Flight or Hotel is not present for given input"));
-           
+
 
         }
+
+        [Test]
+        public void Get_Correct_Results_Of_Flight_And_Hotel_For_Any_London_Airports()
+        {
+            var holidaySearch = new HolidaySearch(departingFrom: "Any London Airport",
+                                                  travelingTo: "PMI",
+                                                  departureDate: "2023/06/15",
+                                                  duration: 10);
+
+            holidaySearch.Results().First().TotalPrice.Should().Be(675);
+            holidaySearch.Results().First().Flight.Id.Should().Be(6);
+            holidaySearch.Results().First().Hotel.Id.Should().Be(5);
+
+
+        }
+
+        [Test]
+        public void Get_Correct_Results_Of_Flight_And_Hotel_For_Any_Airports()
+        {
+            var holidaySearch = new HolidaySearch(departingFrom: "Any Airport",
+                                                  travelingTo: "LPA",
+                                                  departureDate: "2022/11/10",
+                                                  duration: 14);
+
+            holidaySearch.Results().First().TotalPrice.Should().Be(1175);
+            holidaySearch.Results().First().Flight.Id.Should().Be(7);
+            holidaySearch.Results().First().Hotel.Id.Should().Be(6);
+
+
+        }
+
+        [Test]
+        public void Get_Correct_Results_Of_Flight_And_Hotel_For_Empty_Departing_From()
+        {
+            var holidaySearch = new HolidaySearch(departingFrom: "",
+                                                  travelingTo: "LPA",
+                                                  departureDate: "2022/11/10",
+                                                  duration: 14);
+
+            holidaySearch.Results().First().TotalPrice.Should().Be(1175);
+            holidaySearch.Results().First().Flight.Id.Should().Be(7);
+            holidaySearch.Results().First().Hotel.Id.Should().Be(6);
+
+
+        }
+
     }
 
 }

@@ -4,8 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <GenerateProgramFile>false</GenerateProgramFile>
-
+   
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
@@ -26,6 +25,7 @@
     <None Remove="FluentAssertions" />
     <None Remove="Data\" />
     <None Remove="Microsoft.AspNetCore.Mvc" />
+    <None Remove="SearchModels\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -33,6 +33,7 @@
     <Folder Include="bin\Debug\net6.0\" />
     <Folder Include="Data\" />
     <Folder Include="bin\Debug\net6.0\Data\" />
+    <Folder Include="SearchModels\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\Debug\net6.0\Data\FlightData.json" />

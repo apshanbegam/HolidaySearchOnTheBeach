@@ -1,5 +1,4 @@
-﻿using System;
-namespace Search.Models
+﻿namespace Search.Models
 {
     public class Result
     {

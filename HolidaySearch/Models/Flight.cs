@@ -1,5 +1,4 @@
-﻿using System;
-namespace Search.Models
+﻿namespace Search.Models
 {
     public class Flight
     {
@@ -8,6 +7,6 @@ namespace Search.Models
         public string From { get; set; }
         public string To { get; set; }
         public float Price { get; set; }
-        public string Departure_Date { get; set; }
+        public DateTime Departure_Date { get; set; }
     }
 }

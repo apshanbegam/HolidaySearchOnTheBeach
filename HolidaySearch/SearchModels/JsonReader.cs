@@ -1,19 +1,15 @@
-﻿using System;
-using System.IO;
-using Newtonsoft.Json;
-using System.Globalization;
+﻿using Newtonsoft.Json;
+using Search.Models;
 
-namespace Search.Models
+namespace Search.SearchModels
 {
     public class JsonReader
     {
-        List<Flight> Flights;
-        List<Hotel> Hotels;
-
         public List<Flight> LoadFlightJson()
         {
+            var Flights = new List<Flight>();
             string path = Path.Combine(Directory.GetCurrentDirectory(), $@"Data/FlightData.json");
-           
+
             using (var streamReader = new StreamReader(path))
             {
                 string json = streamReader.ReadToEnd();
@@ -22,9 +18,10 @@ namespace Search.Models
             return Flights;
         }
 
-        
+
         public List<Hotel> LoadHotelJson()
         {
+            var Hotels = new List<Hotel>();
             string path = Path.Combine(Directory.GetCurrentDirectory(), $@"Data/HotelData.json");
             using (var streamReader = new StreamReader(path))
             {
@@ -34,7 +31,7 @@ namespace Search.Models
             return Hotels;
         }
 
-      
+
     }
 }
 
