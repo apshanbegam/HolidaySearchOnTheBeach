@@ -8,7 +8,7 @@ namespace Search.SearchModels
         public List<Flight> LoadFlightJson()
         {
             var Flights = new List<Flight>();
-            string path = Path.Combine(Directory.GetCurrentDirectory(), $@"Data/FlightData.json");
+            string path = Path.Combine(Directory.GetCurrentDirectory(), $@"../../../Data/FlightData.json");
 
             using (var streamReader = new StreamReader(path))
             {
@@ -22,7 +22,7 @@ namespace Search.SearchModels
         public List<Hotel> LoadHotelJson()
         {
             var Hotels = new List<Hotel>();
-            string path = Path.Combine(Directory.GetCurrentDirectory(), $@"Data/HotelData.json");
+            string path = Path.Combine(Directory.GetCurrentDirectory(), $@"../../../Data/HotelData.json");
             using (var streamReader = new StreamReader(path))
             {
                 string json = streamReader.ReadToEnd();
